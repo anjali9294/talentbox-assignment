@@ -25,10 +25,11 @@ const Login = () => {
       email,
       password,
     };
-
+    console.log(userData);
     axios
       .post("/login", userData)
       .then((response) => {
+        console.log("hello");
         // Handle successful login
         console.log("Login successful:", response.data);
 
@@ -37,6 +38,8 @@ const Login = () => {
         navigate("/courses");
       })
       .catch((error) => {
+        console.log("hellof");
+
         console.log("Login failed:", error.response.data);
       });
   };
@@ -85,7 +88,7 @@ const Login = () => {
           </button>
         </div>
       </div>
-      <div className="main">
+      <div className="main-login">
         <div className="">
           <form onSubmit={handleFormSubmit}>
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>

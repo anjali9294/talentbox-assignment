@@ -4,9 +4,18 @@ const mongoose = require("mongoose");
 const { register, login } = require("./Controller/user");
 const { course } = require("./Controller/course");
 const { body, validationResult } = require("express-validator");
+const cors = require("cors");
 const app = express();
 
 const port = 3000;
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 
 // Connect to MongoDB
 mongoose
@@ -30,7 +39,7 @@ app.post(
 );
 
 // // User login
-app.post("/login", verifyToken, login);
+app.post("/login", login);
 
 app.post("/logout", (req, res) => {
   res.status(200).json({ message: "Logout successful" });

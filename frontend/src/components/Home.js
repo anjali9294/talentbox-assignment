@@ -1,6 +1,6 @@
 import React from "react";
 
-import ".//Style.css";
+import "./Style.css";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
@@ -41,7 +41,12 @@ const Home = () => {
             )
           </div>
           <div>
-            <button className="btn text-white">Menu</button>
+            <button
+              className="btn text-white"
+              onClick={() => navigate("/courses")}
+            >
+              Courses
+            </button>
             <button
               className="btn btn-warning text-white"
               onClick={() => navigate("/login")}

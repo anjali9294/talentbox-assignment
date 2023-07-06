@@ -88,7 +88,7 @@ const Register = () => {
           </button>
         </div>
       </div>
-      <div className="main ">
+      <div className="main-signup ">
         <div className="">
           <form onSubmit={handleFormSubmit}>
             <h1 class="h3 mb-3 fw-normal">Please sign up</h1>

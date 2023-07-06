@@ -1,6 +1,22 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 const Courses = () => {
+  const [courses, setCourses] = useState([]);
+  console.log(courses);
+  useEffect(() => {
+    // Fetch courses from the API
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get("/courses");
+        console.log("hello");
+        setCourses(response.data);
+      } catch (error) {
+        console.error("Failed to fetch courses", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
   return (
     <>
       <div className="Courses-page">
@@ -63,38 +79,13 @@ const Courses = () => {
             </div>
           </div>
           <div className=" courses">
-            <div className="course-list ">
-              <div className="course">
-                <i class="fa fa-laptop"></i>
-
-                <p className="px-3">
-                  (New) Responsive Web Design Certification ( 300 hours )
-                </p>
-              </div>
-              <div className="course">
-                <i class="fa-brands fa-js"></i>
-                <p className="px-3">
-                  (New) Responsive Web Design Certification ( 300 hours )
-                </p>
-              </div>
-              <div className="course">
-                <i class="fa-brands fa-react"></i>{" "}
-                <p className="px-3">
-                  (New) Responsive Web Design Certification ( 300 hours )
-                </p>
-              </div>
-              <div className="course">
-                <i class="fa-solid fa-database"></i>{" "}
-                <p className="px-3">
-                  (New) Responsive Web Design Certification ( 300 hours )
-                </p>
-              </div>
-              <div className="course">
-                <i class="fa-solid fa-vial-virus"></i>{" "}
-                <p className="px-3">
-                  (New) Responsive Web Design Certification ( 300 hours )
-                </p>
-              </div>
+            <div className="course-list">
+              {courses.map((course) => (
+                <div className="course" key={course._id}>
+                  <i className={course.icon}></i>
+                  <p className="px-3">{course.title}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
